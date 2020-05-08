@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.masivian.models.Bet;
 import com.masivian.models.Roulette;
 import com.masivian.repositories.RouletteRepository;
@@ -18,6 +20,7 @@ public class RouletteController{
 	@Autowired(required = true)
     private RouletteRepository rouletteRepository;
 	
+	@Transactional
 	public Roulette create() throws Exception{
 		try {
 			Roulette roulette = new Roulette(System.nanoTime(),false);
@@ -28,6 +31,16 @@ public class RouletteController{
 		}	
 	}
 	
+	public Iterable<Roulette> list() {
+		try {
+			return rouletteRepository.findAll();
+		}
+		catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	@Transactional
 	public boolean openRoulette(long idRoulette) {
 		try {
 			Roulette roulette = rouletteRepository.findById(idRoulette).get();
@@ -43,6 +56,19 @@ public class RouletteController{
 		}	
 	}
 	
+	@Transactional
+	public Roulette closeRoulette(long idRoulette) {
+		try {
+			Roulette roulette = rouletteRepository.findById(idRoulette).get();
+			roulette.setOpen(false);
+			return rouletteRepository.save(roulette);
+		}
+		catch (Exception e) {
+			throw e;
+		}	
+	}
+	
+	@Transactional
 	public Bet createBet(long idRoulette, long idClient, String color, int number, BigDecimal amount) throws Exception {
 		if(color != null)
 			if(isValidColor(color))
@@ -63,10 +89,11 @@ public class RouletteController{
 			
 			Roulette roulette = rouletteRepository.findById(idRoulette).get();
 			if(roulette.isOpen()){
-				Bet bet = new Bet(idRoulette, idClient, amount, color, -1);
+				Bet bet = new Bet(System.nanoTime(), idClient, amount, color, -1);
 				ArrayList<Bet> bets = roulette.getBets();
 				bets.add(bet);
 				roulette.setBets(bets);
+				rouletteRepository.save(roulette);
 			    return bet;
 			}
 			throw new Exception("The roulette is closed");
@@ -87,6 +114,7 @@ public class RouletteController{
 				ArrayList<Bet> bets = roulette.getBets();
 				bets.add(bet);
 				roulette.setBets(bets);
+				rouletteRepository.save(roulette);
 			    return bet;
 			}
 			throw new Exception("The roulette is closed");

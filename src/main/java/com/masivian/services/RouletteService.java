@@ -64,6 +64,21 @@ public class RouletteService {
 		}
 	}
 	
+	@GetMapping("/{id}/close")
+	public ResponseEntity<JSONObject> closeRoulette(@PathVariable("id") Long id){
+		JSONObject jsonResponse = new JSONObject();
+		try {
+			long idRoulette = id;
+			Roulette roulette = rouletteController.closeRoulette(idRoulette);
+			jsonResponse.put("roulette", roulette);
+			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			jsonResponse.put("error", e.getMessage());
+			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@PostMapping("/{id}/bet")
 	public ResponseEntity<JSONObject> createBet(@PathVariable("id") Long id, @RequestBody JSONObject body, @RequestHeader Map<String, String> headers)  {
 		JSONObject jsonResponse = new JSONObject();
@@ -92,4 +107,17 @@ public class RouletteService {
 		}
 	}
 	
+	@GetMapping("/list")
+	public ResponseEntity<JSONObject> listRoulettes()  {
+		JSONObject jsonResponse = new JSONObject();
+		try {
+			Iterable<Roulette> roulette = this.rouletteController.list();
+			jsonResponse.put("id", roulette);
+			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			jsonResponse.put("error", e.getMessage());
+			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

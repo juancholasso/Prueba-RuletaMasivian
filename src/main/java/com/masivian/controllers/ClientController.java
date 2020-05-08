@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import com.masivian.models.Roulette;
 import com.masivian.services.ClientService;
 import com.masivian.services.RouletteService;
 
-@Service
+@Controller
 @RestController
 @RequestMapping("/api/client")
 public class ClientController {
@@ -28,6 +29,11 @@ public class ClientController {
 	@Autowired
 	private ClientService clientController;
 	
+	/**
+	 * Create a new Client
+	 * @param body
+	 * @return JSON with Client Object
+	 */
 	@PostMapping("/create")
 	public ResponseEntity<JSONObject> createClient(@RequestBody JSONObject body)  {
 		JSONObject jsonResponse = new JSONObject();
@@ -44,6 +50,11 @@ public class ClientController {
 		}
 	}
 	
+	/**
+	 * Return a Client by ID
+	 * @param id
+	 * @return JSON with client object
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<JSONObject> getClient(@PathVariable("id") Long id)  {
 		JSONObject jsonResponse = new JSONObject();
@@ -58,6 +69,12 @@ public class ClientController {
 		}
 	}
 	
+	/**
+	 * Add money to Client account
+	 * @param id Client
+	 * @param body
+	 * @return JSON with Client Updated
+	 */
 	@PostMapping("/{id}/addmoney")
 	public ResponseEntity<JSONObject> addMoney(@PathVariable("id") Long id, @RequestBody JSONObject body)  {
 		JSONObject jsonResponse = new JSONObject();

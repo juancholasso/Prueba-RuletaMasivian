@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.masivian.models.Bet;
@@ -17,6 +16,11 @@ public class RouletteService{
 	@Autowired(required = true)
     private RouletteRepository rouletteRepository;
 	
+	/**
+	 * Create a new Roulette
+	 * @return Roulette Object
+	 * @throws Exception
+	 */
 	@Transactional
 	public Roulette create() throws Exception{
 		try {
@@ -28,6 +32,10 @@ public class RouletteService{
 		}	
 	}
 	
+	/**
+	 * Return list of Roulettes
+	 * @return List
+	 */
 	public Iterable<Roulette> list() {
 		try {
 			return rouletteRepository.findAll();
@@ -37,6 +45,11 @@ public class RouletteService{
 		}
 	}
 	
+	/**
+	 * Change state to open of a Roulette
+	 * @param idRoulette 
+	 * @return Boolean if transaction is success
+	 */
 	@Transactional
 	public boolean openRoulette(long idRoulette) {
 		try {
@@ -53,6 +66,11 @@ public class RouletteService{
 		}	
 	}
 	
+	/**
+	 * Change to state to close of a Roulette 
+	 * @param idRoulette
+	 * @return Roulette Object
+	 */
 	@Transactional
 	public Roulette closeRoulette(long idRoulette) {
 		try {
@@ -65,6 +83,16 @@ public class RouletteService{
 		}	
 	}
 	
+	/**
+	 * Create a new Bet
+	 * @param idRoulette
+	 * @param idClient
+	 * @param color (Rojo o negro)
+	 * @param number (0 to 36)
+	 * @param amount (<10000)
+	 * @return Bet Object
+	 * @throws Exception
+	 */
 	@Transactional
 	public Bet createBet(long idRoulette, long idClient, String color, int number, BigDecimal amount) throws Exception {
 		if(color != null)
@@ -79,6 +107,9 @@ public class RouletteService{
 				throw new Exception("Invalid number");
 	}
 
+	/**
+	 * Create a Bet - Option Color
+	 */
 	private Bet betOnColor(long idRoulette, long idClient, String color, BigDecimal amount) throws Exception {
 		try {
 			if(amount.compareTo(Bet.MAX_AMOUNT) == 1)
@@ -100,6 +131,9 @@ public class RouletteService{
 		}	
 	}
 
+	/**
+	 * Create a Bet - Option Number
+	 */
 	private Bet betOnNumber(long idRoulette, long idClient, int number, BigDecimal amount) throws Exception {
 		try {
 			if(amount.compareTo(Bet.MAX_AMOUNT) == 1)
@@ -121,12 +155,22 @@ public class RouletteService{
 		}	
 	}
 
+	/**
+	 * Return true if color is rojo or negro
+	 * @param color
+	 * @return Boolean
+	 */
 	public boolean isValidColor(String color) {
 		if(color.equals("rojo") || color.equals("negro")) 
 			return true;
 		return false;
 	}
 	
+	/**
+	 * Return true if number is diferent to -1 and is between 0 and 36
+	 * @param number
+	 * @return Boolean
+	 */
 	public boolean isValidNumber(int number) {
 		return ((number != -1) && (number >= 0 && number <= 36));
 	}

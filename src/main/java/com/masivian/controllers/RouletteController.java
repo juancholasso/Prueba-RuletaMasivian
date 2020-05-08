@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ import com.masivian.models.Roulette;
 import com.masivian.services.ClientService;
 import com.masivian.services.RouletteService;
 
-@Service
+@Controller
 @RestController
 @RequestMapping("/api/roulette")
 public class RouletteController {
@@ -32,6 +33,10 @@ public class RouletteController {
 	@Autowired
 	private ClientService clientController;
 
+	/**
+	 * Create Roulette
+	 * @return JSON with id of new Roulette
+	 */
 	@GetMapping("/create")
 	public ResponseEntity<JSONObject> createRoulette()  {
 		JSONObject jsonResponse = new JSONObject();
@@ -46,6 +51,11 @@ public class RouletteController {
 		}
 	}
 	
+	/**
+	 * Change state to Open of a Roulette
+	 * @param id of Roulette
+	 * @return Status of transaction
+	 */
 	@GetMapping("/{id}/open")
 	public ResponseEntity<JSONObject> openRoulette(@PathVariable("id") Long id){
 		JSONObject jsonResponse = new JSONObject();
@@ -64,6 +74,11 @@ public class RouletteController {
 		}
 	}
 	
+	/**
+	 * Change state to Close of a Roulette
+	 * @param id of Roulette
+	 * @return Status of transaction
+	 */
 	@GetMapping("/{id}/close")
 	public ResponseEntity<JSONObject> closeRoulette(@PathVariable("id") Long id){
 		JSONObject jsonResponse = new JSONObject();
@@ -79,6 +94,13 @@ public class RouletteController {
 		}
 	}
 	
+	/**
+	 * Create a new Bet of a Roulette
+	 * @param id Roulette
+	 * @param body
+	 * @param headers
+	 * @return JSON with Bet object and id Roulette
+	 */
 	@PostMapping("/{id}/bet")
 	public ResponseEntity<JSONObject> createBet(@PathVariable("id") Long id, @RequestBody JSONObject body, @RequestHeader Map<String, String> headers)  {
 		JSONObject jsonResponse = new JSONObject();
@@ -107,13 +129,17 @@ public class RouletteController {
 		}
 	}
 	
+	/**
+	 * List of Roulettes
+	 * @return JSON List with roulettes
+	 */
 	@GetMapping("/list")
 	public ResponseEntity<JSONObject> listRoulettes()  {
 		JSONObject jsonResponse = new JSONObject();
 		try {
 			Iterable<Roulette> roulette = this.rouletteController.list();
 			jsonResponse.put("id", roulette);
-			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.CREATED);
+			return new ResponseEntity<JSONObject>(jsonResponse, HttpStatus.OK);
 		} 
 		catch (Exception e) {
 			jsonResponse.put("error", e.getMessage());

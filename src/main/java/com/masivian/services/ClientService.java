@@ -12,6 +12,13 @@ public class ClientService{
 	@Autowired(required = true)
     private ClientRepository clientRepository;
 	
+	/**
+	 * This function create a new Client
+	 * @param id -> Primary Key
+	 * @param money 
+	 * @return Client created
+	 * @throws Exception
+	 */
 	public Client create(long id, BigDecimal money) throws Exception{
 		try {
 			Client client = new Client(id, money);
@@ -22,6 +29,13 @@ public class ClientService{
 		}	
 	}
 	
+	/**
+	 * Add money to Client account
+	 * @param id of Client
+	 * @param money to add
+	 * @return Client object
+	 * @throws Exception when client don't exist
+	 */
 	public Client addMoney(long id, BigDecimal money) throws Exception {
 		try {
 			clientExist(id);
@@ -34,6 +48,13 @@ public class ClientService{
 		}	
 	}
 
+	/**
+	 * Substract money to Client account
+	 * @param id Client
+	 * @param money to substract 
+	 * @return Client Object
+	 * @throws Exception when client don't exist
+	 */
 	public Client subtractMoney(long id, BigDecimal money) throws Exception {
 		try {
 			clientExist(id);
@@ -46,6 +67,12 @@ public class ClientService{
 		}	
 	}
 	
+	/**
+	 * Return Client by id
+	 * @param id Client
+	 * @return Client Object
+	 * @throws Exception when client don't exist
+	 */
 	public Client find(long id) throws Exception {
 		try {
 			clientExist(id);
@@ -56,6 +83,13 @@ public class ClientService{
 		}	
 	}
 	
+	/**
+	 * Return true if the money of client is greater than amount parameter
+	 * @param id Client
+	 * @param amount 
+	 * @return Boolean
+	 * @throws Exception
+	 */
 	public boolean hasMoney(long id, BigDecimal amount) throws Exception {
 		try {
 			clientExist(id);
@@ -69,6 +103,12 @@ public class ClientService{
 		}
 	}
 	
+	/**
+	 * Return true if client exist
+	 * @param id Client
+	 * @return boolea
+	 * @throws Exception
+	 */
 	public boolean clientExist(long id) throws Exception {
 		if(clientRepository.existsById(id))
 			return true;

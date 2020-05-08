@@ -15,14 +15,24 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @EnableRedisRepositories(basePackages = "com.masivian.repositories")
 public class RedisBean {
 
+	/**
+	 * Return RedisConnection
+	 * @return
+	 * @throws URISyntaxException
+	 */
 	@Bean
 	JedisConnectionFactory jedisConnectionFactory() throws URISyntaxException {
-		URI uri = new URI("redis://redistogo:ee5f0a78000babb31ad9bd776e8f4329@spinyfin.redistogo.com:11580/");
+		URI uri = new URI("redis://redistogo:251737ec85ca7351c8553d05cda906b6@crestfish.redistogo.com:9660");
 		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(uri.getHost(), uri.getPort());
-	    redisStandaloneConfiguration.setPassword(RedisPassword.of("ee5f0a78000babb31ad9bd776e8f4329"));
+	    redisStandaloneConfiguration.setPassword(RedisPassword.of("251737ec85ca7351c8553d05cda906b6"));
 	    return new JedisConnectionFactory(redisStandaloneConfiguration);
 	}
 	 
+	/**
+	 * Return template of RedisConnection
+	 * @return
+	 * @throws URISyntaxException
+	 */
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() throws URISyntaxException {
 	    RedisTemplate<String, Object> template = new RedisTemplate<>();

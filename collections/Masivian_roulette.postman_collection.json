@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "86d28944-9945-45ae-8e81-e1b98e143347",
+		"name": "Masivian_roulette",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Roulette",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/create",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open Roulette",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/open",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"99866742972908",
+						"open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"1234\",\n\t\"money\":\"29000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/client/create",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/client/1234",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"client",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Money to Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"money\":\"300\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/client/1234/addmoney",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"client",
+						"1234",
+						"addmoney"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create bet Color",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "idclient",
+						"value": "1234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":400,\n\t\"color\":\"negro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/bet",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"99866742972908",
+						"bet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create bet number",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "idclient",
+						"value": "1234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 800,\n\t\"number\": 29\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/bet",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"99866742972908",
+						"bet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Close Roulette",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/close",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"99866742972908",
+						"close"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Roulettes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/list",
+					"protocol": "https",
+					"host": [
+						"roulettemasivian",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"roulette",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7c33c41f-54e5-4e25-8688-d335630ce321",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "207ffe80-d1d6-442a-acf3-1b461b0f336e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

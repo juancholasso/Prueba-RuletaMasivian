@@ -45,7 +45,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/open",
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/163527226203769/open",
 					"protocol": "https",
 					"host": [
 						"roulettemasivian",
@@ -55,7 +55,7 @@
 					"path": [
 						"api",
 						"roulette",
-						"99866742972908",
+						"163527226203769",
 						"open"
 					]
 				}
@@ -168,7 +168,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/bet",
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/163527226203769/bet",
 					"protocol": "https",
 					"host": [
 						"roulettemasivian",
@@ -178,7 +178,7 @@
 					"path": [
 						"api",
 						"roulette",
-						"99866742972908",
+						"163527226203769",
 						"bet"
 					]
 				}
@@ -206,7 +206,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/bet",
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/163527226203769/bet",
 					"protocol": "https",
 					"host": [
 						"roulettemasivian",
@@ -216,7 +216,7 @@
 					"path": [
 						"api",
 						"roulette",
-						"99866742972908",
+						"163527226203769",
 						"bet"
 					]
 				}
@@ -229,7 +229,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/99866742972908/close",
+					"raw": "https://roulettemasivian.herokuapp.com/api/roulette/163527226203769/close",
 					"protocol": "https",
 					"host": [
 						"roulettemasivian",
@@ -239,7 +239,7 @@
 					"path": [
 						"api",
 						"roulette",
-						"99866742972908",
+						"163527226203769",
 						"close"
 					]
 				}
